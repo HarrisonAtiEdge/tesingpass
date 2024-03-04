@@ -1,0 +1,143 @@
+<!-- moderator/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moderator Interface</title>
+  <link rel="stylesheet" href="indexstyle.css">
+  <link rel="stylesheet" href="cloudstyle.css">
+
+  <style>
+    body{
+
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    }
+
+    ul{
+      padding: 0;
+    }
+   #userList li{
+
+    list-style: none;
+    text-decoration: none;
+    font-size: 24px;
+    /* background-size: 40px; */
+    font-weight: 900;
+    }
+
+    h1{
+      z-index: 900;
+      position: absolute;
+      top: 50px;
+    }
+
+    button{
+      position: absolute;
+    bottom: -50px;
+    padding: 10px 20px;
+    background-color: #450000;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    font-family: 'Comic Sans MS';
+    font-size: 20px;
+    cursor: pointer;
+    }
+
+    #updateScreen{
+      z-index:  100;
+      position: absolute;
+      margin-bottom: 90px;
+    margin-left: -45px;
+
+    }
+
+   
+  </style>
+</head>
+
+
+  <body class="background1">
+    <h1>Table List</h1>
+    <div id="background-wrap">
+        <div class="x1">
+            <div class="cloud"></div>
+        </div>
+    
+        <div class="x2">
+            <div class="cloud"></div>
+        </div>
+    
+        <div class="x3">
+            <div class="cloud"></div>
+        </div>
+    
+        <div class="x4" style="margin-top: -100px;">
+            <div class="cloud"></div>
+        </div>
+    
+        <div class="x5" style="margin-top: -300px;">
+            <div class="cloud"></div>
+        </div>
+        <div class="x1" style="margin-top: -100px; margin-right: 3000px">
+            <div class="cloud"></div>
+        </div>
+       
+    </div>
+
+
+
+    
+    <div class="resultbox">
+        <img src="images/resultpage-01.webp">
+    </div>
+   
+    
+    <div id="scoreboard">
+      
+
+     
+      <div>
+        <ul id="userList"></ul>
+      </div>
+    </div>
+
+
+  <div  id="footer">
+
+    <button id="updateScreen"  onclick="reload()">Update</button>
+  </div>
+
+
+   
+  
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const userListElement = document.getElementById('userList');
+    // let firstUserLoggedIn = false; // Track if the first user has logged in
+    // let firstUserName = ''; // Store the name of the first user
+
+    socket.on('login', (data) => {
+      // if (!firstUserLoggedIn) {
+        // firstUserName = data.username;
+        const listItem = document.createElement('li');
+        listItem.textContent = `${data.username}`;
+        userListElement.appendChild(listItem);
+        // firstUserLoggedIn = true;
+      // }
+    });
+
+
+function reload(){
+window.location.href="home.html"
+}
+
+  </script>
+</body>
+</html>
